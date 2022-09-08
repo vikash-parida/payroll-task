@@ -24,7 +24,7 @@ function normalizePort(val) {
 }
 
 // GET PORT FROM ENVIRONMENT AND STORE IN EXPRESS
-const port = normalizePort(process.env.PORT || '9000');
+const port = normalizePort(process.env.PORT || '8080');
 
 // CREATE HTTP SERVER AND LISTEN ON THE PROVIDED PORT
 const server = http.createServer(app);

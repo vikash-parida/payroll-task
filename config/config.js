@@ -1,8 +1,6 @@
 
-require('dotenv').config();
-
 module.exports = {
-    development:{  dialect:process.env.SQL_SERVER_DB_DIALECT,
+   development:{  dialect:process.env.SQL_SERVER_DB_DIALECT,
                    host: process.env.SQL_SERVER_HOST ,
                    port: process.env.SQL_SERVER_PORT ,
                    database: process.env.SQL_SERVER_DB,
