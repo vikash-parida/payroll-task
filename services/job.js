@@ -20,7 +20,7 @@ exports.createJob = async (req, res) => {
         }
         const job = await models.sequelize.query(`INSERT INTO "job" ("job_name","description","created_by")
             VALUES ('${job_name}','${description}','${req.userDetails.id}')`)
-        return data
+        return job
 
     }
     else {
@@ -120,21 +120,23 @@ exports.applyJob = async (req) => {
     } else {
         let findUser = await models.user.findOne({
             where: { email }
-        })
+        });
         if (!findUser) {
             return { error: true, message: 'Email does no exist' };
         }
 
         const job = await models.job.findOne({
             where: { id: jobId }
-        })
+        });
+
         if (!job) {
             return { error: true, message: 'Job not found' }
 
         }
+
         const recruiter = await models.user.findOne({
             where: { id: job.created_by }
-        })
+        });
 
         if (!recruiter) {
             return { error: true, message: 'recruiter not found' }
@@ -145,7 +147,7 @@ exports.applyJob = async (req) => {
                 user_id: findUser.id,
                 job_id: job.id
             }
-        })
+        });
 
         if (alreadyApplied) {
             return { error: true, message: 'You have already applied for this job' }
@@ -154,7 +156,7 @@ exports.applyJob = async (req) => {
         const result = await models.user_job.create({
             user_id: findUser.id,
             job_id: job.id
-        })
+        });
 
         const userText = `<p>${findUser.name},</p>
         <p>Thank you for applying for the position of ${job.job_name}.
@@ -208,7 +210,7 @@ exports.getAllApplicantForJob = async (req) => {
 
         const allApplicant = await redisClient.get('data')
         if (allApplicant) {
-            console.log("from redis....",allApplicant)
+            // console.log("from redis....",allApplicant)
             return JSON.parse(allApplicant)
         }
         
