@@ -8,11 +8,11 @@ const checkAuth = require('../middleware/checkAuth');
 const checkPermission = require('../middleware/checkPermission');
 
 
-route.get('/', checkAuth,errorWrap.wrapper(job.getJobs))
+route.get('/',checkAuth,checkPermission(3),errorWrap.wrapper(job.getJobs))
 
-route.get('/applied-jobs', checkAuth,errorWrap.wrapper(job.getJobsAppliedByUser)) //for user
+route.get('/applied-jobs',checkAuth,checkPermission(3),errorWrap.wrapper(job.getJobsAppliedByUser)) //for user
 
-route.get('/job-applicants', checkAuth,errorWrap.wrapper(job.getAllApplicantForJob)) //for recruiter
+route.get('/job-applicants',checkAuth,checkPermission(2),errorWrap.wrapper(job.getAllApplicantForJob)) //for recruiter
 
 route.get('/candidates-job', checkAuth,checkPermission(1),errorWrap.wrapper(job.getAllCandidatesWithJobs)) //for admin
 
@@ -24,4 +24,4 @@ route.delete('/delete/:id',checkAuth,checkPermission(1),errorWrap.wrapper(job.de
 
 
 
-module.exports = route;
+module.exports = route;   

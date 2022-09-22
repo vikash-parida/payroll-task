@@ -11,7 +11,7 @@ exports.signIn = async (req, res) => {
       return res.status(404).json({ message: 'User not found' });
     } else {
       let userDetails = await checkUser.comparePassword(password);
-      console.log(userDetails);
+      // console.log(userDetails);
       if (userDetails === true) {
         const token = jwt.sign(
           {
@@ -48,8 +48,7 @@ exports.signOut = async(req,res) => {
   const signOut = await models.user_token.destroy({
       where: { user_id: req.userData.id }
   });
-
-  console.log(req.userData.id);
+  // console.log(req.userData.id);
   if (signOut) {
     return res.status(200).json({ message: "Successfully logged out" });
 

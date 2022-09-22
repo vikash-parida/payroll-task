@@ -16,6 +16,16 @@ const emailUsed = async (email) => {
     )
     return emailUsed
 }
+const adminSignUp = async (email, password, name) => {
+    const user = await models.user.create({
+        email,
+        password,
+        name,
+        role_id:1
+    }
+    )
+    return user;
+}
 
 const userSignUp = async (email, password, name) => {
     const user = await models.user.create({
@@ -123,19 +133,16 @@ const exportApplicant = async(req) =>{
 const forgotPassword = async (user) => {
 
     const otp = Math.floor(1000 + Math.random() * 9000);
-        // let createdTime = moment();
-        // let expiry_time = moment().add(30, 'minutes').format('YYYY/MM/DD HH:mm:ss');
-        let momentDate=new moment('2018-08-31T20:13:00.000Z');
-        let expiry_time=moment.utc().add(5, 'minutes').format("YYYY-MM-DD HH:mm:ss");
-    console.log(expiry_time)
+        
+    let expiry_time=moment.utc().add(5, 'minutes').format("YYYY-MM-DD HH:mm:ss");
     
 
     await models.user_otp.destroy({ where: { user_id : user.id } })
 
     const result = await models.user_otp.create({otp, expiry_time,user_id : user.id });
-    console.log(result);
+   
     const content = `Your OTP for password change request is ${otp}. It will be valid for 5 minutes.`
-    // await sendEmail(user.email, "Password reset request", content)
+    await sendEmail(user.email, "Password reset request", content)
     return {
         message : "OTP sent to registered Email Id",
         result
@@ -146,6 +153,7 @@ const resetPassword = async (req, user) => {
         const { otp, password } = req.body
         // console.log(moment())
      const now = moment.utc().format("YYYY-MM-DD HH:mm:ss");
+
 
 
         const verifyOtp = await models.user_otp.findOne({
@@ -196,6 +204,7 @@ const removeUser = async (id) => {
 
 
 module.exports = {
+    adminSignUp:adminSignUp,
     userSignUp: userSignUp,
     emailUsed: emailUsed,
     getUsers:getUsers,

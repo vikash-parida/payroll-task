@@ -10,6 +10,8 @@ const checkPermission = require('../middleware/checkPermission');
 
 route.post('/',userValidation,validationError,errorWrap.wrapper(user.userSignUp));
 
+route.post('/admin',userValidation,validationError,errorWrap.wrapper(user.adminSignUp));
+
 route.post('/add-recruiter',userValidation,validationError,errorWrap.wrapper(user.addRecruiter));
 
 route.post('/forgot-password',errorWrap.wrapper(user.forgotPassword));

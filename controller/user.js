@@ -4,6 +4,24 @@ const xlxs = require('xlsx')
 const moment = require('moment')
 const ExcelJs = require('exceljs');
 
+exports.adminSignUp = async (req, res) => {
+    const { email, password ,name } = req.body;
+
+    const emailExist = await service.emailUsed(email);
+
+    if (emailExist) {
+        return res.status(400).json({
+            msg: "email already used"
+        });
+    }
+
+    const user = await service.adminSignUp(email, password, name);
+    res.status(201).json({
+        msg:"Admin user succesfully created",
+        user
+    });
+}
+
 exports.userSignUp = async (req, res) => {
     const { email, password ,name } = req.body;
 
@@ -114,7 +132,7 @@ exports.exportRecruiter = async(req,res)=>{
 
 exports.exportApplicant =  async(req,res)=>{
     const applicants =await service.exportApplicant(req);
-    console.log(applicants)
+    //console.log(applicants)
     if (applicants.data.length==0) {
         return res.status(404).json({
             msg: "No user not found"

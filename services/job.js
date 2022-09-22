@@ -12,7 +12,7 @@ const redisClient = require('../utils/redis')
 
 exports.createJob = async (req, res) => {
     const { job_name, description } = req.body
-    console.log(req.userData)
+    // console.log(req.userData)
 
     if (req.query.type == "raw") {
         if (!req.userData) {
@@ -60,7 +60,7 @@ exports.getJobs = async (req) => {
 
 
 exports.applyJob = async (req) => {
-    // const {  email } = req.body;
+   
     const { jobId } = req.params;
     const { email } = req.userData;
 
@@ -210,7 +210,7 @@ exports.getAllApplicantForJob = async (req) => {
 
         const allApplicant = await redisClient.get('data')
         if (allApplicant) {
-            // console.log("from redis....",allApplicant)
+             console.log("from redis....",allApplicant)
             return JSON.parse(allApplicant)
         }
         
@@ -251,7 +251,7 @@ exports.getAllApplicantForJob = async (req) => {
         
         const allApplicant = await redisClient.get('data')
         if (allApplicant) {
-            console.log("from redis....",allApplicant)
+           // console.log("from redis....",allApplicant)
             return JSON.parse(allApplicant)
         }
         

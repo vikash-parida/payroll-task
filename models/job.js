@@ -20,5 +20,9 @@ module.exports = (sequelize, Sequelize) => {
       tableName: "job",
     })
 
+    Job.associate = function (models) {
+      Job.belongsToMany(models.user,{through:models.user_job,foreignKey: 'job_id'})
+  }
+
     return Job;
 }
