@@ -23,5 +23,22 @@ route.post('/apply-job/:jobId',checkAuth,checkPermission(3),errorWrap.wrapper(jo
 route.delete('/delete/:id',checkAuth,checkPermission(1),errorWrap.wrapper(job.deleteJob))
 
 
+/**
+ * @swagger
+ * /job/:
+ *   get:
+ *     summary: show all jobs in this job-portal
+ *     descriptions: get all job list
+ *     security:
+ *       - bearerAuth: []
+ *     consumes:
+ *       - application/json
+ *     responses:
+ *       200:   
+ *         description: this api is get 
+ *       404:
+ *         description: jobs data not found 
+ *     
+ */ 
 
 module.exports = route;   

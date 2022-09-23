@@ -251,7 +251,7 @@ exports.getAllApplicantForJob = async (req) => {
         
         const allApplicant = await redisClient.get('data')
         if (allApplicant) {
-           // console.log("from redis....",allApplicant)
+            console.log("from redis....",allApplicant)
             return JSON.parse(allApplicant)
         }
         

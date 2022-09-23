@@ -28,4 +28,6 @@ route.get('/export-applicant',checkAuth,checkPermission(1),errorWrap.wrapper(use
 
 route.delete('/delete/:id',checkAuth,checkPermission(1),errorWrap.wrapper(user.removeUser));
 
+
+
 module.exports = route;

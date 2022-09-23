@@ -5,36 +5,24 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const path = require('path');
 const routerIndex= require('./routes');
-// const swaggerJsDoc = require('swagger-jsdoc');
-// const swaggerUi = require('swagger-ui-express');
+const swaggerUi = require('swagger-ui-express');
  
 
 app.use(express.json({ extended: true }));
 app.use(logger('dev'));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-// const swaggerOptions = {
-//  swaggerDefinition:{
-//     info:{
-//         title:'Job portal',
-//         description:'job portal api test',
-//         contact:{
-//             name:'vikash'
-//         },
-//         servers:['http://localhost:8080']
-//     }
-//  },
-//  apis:['./routes/*.js']
-// };
 
-// const swaggerDocs = swaggerJsDoc(swaggerOptions);
-// app.use('/api-docs',swaggerUi.serve,swaggerUi.setup(swaggerDocs))
 
-// test app
+
+const swagger = require('./swagger');
+app.use('/docs',swaggerUi.serve,swaggerUi.setup(swagger.swaggerSpec))
+
+// // test app
 
 // app.get('/api/rolling', (req, res) => {
 //     let userdata = req.userData;
-//     console.log(userdata);
+//     // console.log(userdata);
 //    res.status(200).send(userdata);
 // });
 

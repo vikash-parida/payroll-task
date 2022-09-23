@@ -12,7 +12,7 @@ const client = redis.createClient(6379,"127.0.0.1", {
         if (total_retry_time > 1000 * 15) { 
             log('Retry time exhausted'); 
         }
-        if (options.attempt > 10) {
+        if (attempt > 10) {
             log('10 attempts done'); 
         }
         console.log("Attempting connection");
