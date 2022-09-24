@@ -26,19 +26,53 @@ route.delete('/delete/:id',checkAuth,checkPermission(1),errorWrap.wrapper(job.de
 /**
  * @swagger
  * /job/:
- *   get:
- *     summary: show all jobs in this job-portal
- *     descriptions: get all job list
- *     security:
+ *     get:
+ *      summary: show all jobs in this job-portal
+ *      descriptions: get all job list
+ *      security:
+ *        - bearerAuth: []
+ *      consumes:
+ *        - application/json
+ *      responses:
+ *        200:   
+ *          description: this api is get 
+ *        404:
+ *          description: jobs data not found 
+ *  
+ * 
+ * /job/applied-jobs/:
+ *     get:
+ *      summary: user cen see all thay applied jobs
+ *      description:  get all applied jobs
+ *      security:
+ *        - bearerAuth: []
+ *      consumes:
+ *        - application/json
+ *      responses:
+ *        200:
+ *          description: all applied jobs
+ *        404:
+ *          description:  applied jobs data not found
+ * 
+ * /job/applied-jobs/delete/:
+ *     delete:
+ *      summary: admin can delete job
+ *      description: admin can delete jobs
+ *      security:
  *       - bearerAuth: []
- *     consumes:
+ *      consumes:
  *       - application/json
- *     responses:
- *       200:   
- *         description: this api is get 
- *       404:
- *         description: jobs data not found 
- *     
- */ 
+ *      parameters:
+ *       - name: id
+ *         in: query
+ *         description: Id of job to delete
+ *         required: true
+ *         type: integer
+ *         responses:
+ *          200:
+ *           description: job delete successfully
+ *          400:
+ *           description: job not found
+ */       
 
 module.exports = route;   
