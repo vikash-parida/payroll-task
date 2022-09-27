@@ -20,9 +20,9 @@ module.exports = (sequelize, DataTypes) => {
     });
 
 
-//     Entity.associate = function(models) {
-//         Entity.hasMany(models.permission,{foreignKey:'entityId', as:'permission'});
-//     }
+    Entity.associate = function(models) {
+        Entity.hasMany(models.permission,{foreignKey:'entity_Id', as:'permission'});
+    }
 
     return Entity;
 }

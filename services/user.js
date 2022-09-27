@@ -16,34 +16,34 @@ const emailUsed = async (email) => {
     )
     return emailUsed
 }
-const adminSignUp = async (email, password, name) => {
+const adminSignUp = async (email, password, name,roleId) => {
     const user = await models.user.create({
         email,
         password,
         name,
-        role_id:1
+        role_id:roleId
     }
     )
     return user;
 }
 
-const userSignUp = async (email, password, name) => {
+const userSignUp = async (email, password, name ,roleId) => {
     const user = await models.user.create({
         email,
         password,
         name,
-        role_id:3
+        role_id:roleId
     }
     )
     return user;
 }
 
-const addRecruiter = async (email, password, name) => {
+const addRecruiter = async (email, password, name,roleId) => {
     const recruiter = await models.user.create({
         email,
         password,
         name,
-        role_id:2
+        role_id:roleId
     }
     )
     return recruiter;

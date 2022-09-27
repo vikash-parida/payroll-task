@@ -26,7 +26,7 @@ route.get('/export-recruiter',checkAuth,checkPermission(1),errorWrap.wrapper(use
 
 route.get('/export-applicant',checkAuth,checkPermission(1),errorWrap.wrapper(user.exportApplicant));
 
-route.delete('/delete/:id',checkAuth,checkPermission(1),errorWrap.wrapper(user.removeUser));
+route.delete('/:id',checkAuth,checkPermission(1),errorWrap.wrapper(user.removeUser));
 
 
 

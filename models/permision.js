@@ -7,6 +7,10 @@ module.exports = (sequelize, DataTypes) => {
         description: {
             type: DataTypes.TEXT,
         },
+        entity_Id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
         isActive: {
             type: DataTypes.BOOLEAN,
             defaultValue: true,
@@ -28,12 +32,14 @@ module.exports = (sequelize, DataTypes) => {
         freezeTableName: true,
         allowNull: false,
         tableName: 'permission',
+        timestamps: false
     });
 
 
-    // Permission.associate = function (models) {
-    //     Permission.belongsToMany(models.role, { through: models.rolePermission });
-    // }
+    Permission.associate = function (models) {
+        Permission.belongsTo(models.entity, { foreignKey: 'entity_Id', as: 'entity' });
+        Permission.belongsToMany(models.role, { through: models.rolePermission });
+    }
 
     return Permission;
 }

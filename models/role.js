@@ -16,10 +16,10 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: false
   })
 
-  // Role.associate = function (models) {
-  //   Role.hasMany(models.users, { foreignKey: "roleId" });
-  //   Role.belongsToMany(models.permission,{through:models.rolePermission})
-  // }
+  Role.associate = function (models) {
+    Role.hasMany(models.user, { foreignKey: "role_id" });
+    Role.belongsToMany(models.permission,{through:models.rolePermission})
+  }
 
   return Role
 }

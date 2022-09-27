@@ -5,7 +5,7 @@ const moment = require('moment')
 const ExcelJs = require('exceljs');
 
 exports.adminSignUp = async (req, res) => {
-    const { email, password ,name } = req.body;
+    const { email, password ,name ,roleId} = req.body;
 
     const emailExist = await service.emailUsed(email);
 
@@ -15,7 +15,7 @@ exports.adminSignUp = async (req, res) => {
         });
     }
 
-    const user = await service.adminSignUp(email, password, name);
+    const user = await service.adminSignUp(email, password, name,roleId);
     res.status(201).json({
         msg:"Admin user succesfully created",
         user
@@ -23,7 +23,7 @@ exports.adminSignUp = async (req, res) => {
 }
 
 exports.userSignUp = async (req, res) => {
-    const { email, password ,name } = req.body;
+    const { email, password ,name ,roleId} = req.body;
 
     const emailExist = await service.emailUsed(email);
 
@@ -33,7 +33,7 @@ exports.userSignUp = async (req, res) => {
         });
     }
 
-    const user = await service.userSignUp(email, password, name);
+    const user = await service.userSignUp(email, password, name,roleId);
     res.status(201).json({
         msg:"User succesfully created",
         user
@@ -41,7 +41,7 @@ exports.userSignUp = async (req, res) => {
 }
 
 exports.addRecruiter = async (req, res) => {
-    const { email, password ,name } = req.body;
+    const { email, password ,name, roleId } = req.body;
 
     const emailExist = await service.emailUsed(email);
 
@@ -51,7 +51,7 @@ exports.addRecruiter = async (req, res) => {
         });
     }
 
-    const user = await service.addRecruiter(email, password, name);
+    const user = await service.addRecruiter(email, password, name ,roleId);
     res.status(201).json({
         msg:"Recruiter added created",
         user
