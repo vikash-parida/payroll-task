@@ -1,9 +1,9 @@
 const models = require("../models")
 module.exports = async (req, res, next) => {
-   console.log("....sccwcw.cewcw.............",req.userData);
+   //console.log("....sccwcw.cewcw.............",req.userData);
     try {
         const role = req.userData.role_id
-        console.log("user..id..",role);
+       // console.log("user..id..",role);
         const result = await models.rolePermission.findAll({
             where: {role_Id: role},
             include: [
