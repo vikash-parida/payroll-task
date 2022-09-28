@@ -22,12 +22,9 @@ exports.signIn = async (req, res) => {
           process.env.SECRET_KEY,
           { expiresIn: process.env.JWT_EXPIRE_TIME }
         );
+        console.log("ckeck user datail .............",checkUser.dataValues);
         req.userId = checkUser.dataValues.id;
-        delete checkUser.dataValues.email_verified_at;
         delete checkUser.dataValues.password;
-        delete checkUser.dataValues.remember_token;
-        delete checkUser.dataValues.forget_id;
-
         await models.user_token.create({
           user_id:checkUser.dataValues.id,
           token:token
