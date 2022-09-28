@@ -1,20 +1,20 @@
 module.exports = (sequelize, DataTypes) => {
     const RolePermission = sequelize.define('rolePermission', {
-        roleId: {
+        role_Id: {
             type: DataTypes.INTEGER,
         },
-        permissionId: {
+        permission_Id: {
             type: DataTypes.INTEGER,
         },
         isActive: {
             type: DataTypes.BOOLEAN,
             defaultValue: true,
         },
-       
     }, {
         freezeTableName: true,
         allowNull: false,
-        tableName: 'rolePermission'
+        tableName: 'rolePermission',
+        timestamps: false
     });
 
     RolePermission.associate = function (models) {

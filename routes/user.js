@@ -18,15 +18,15 @@ route.post('/forgot-password',errorWrap.wrapper(user.forgotPassword));
 
 route.put('/reset-password',errorWrap.wrapper(user.resetPassword));
 
-route.get('/',checkAuth,checkPermission(1),errorWrap.wrapper(user.getUsers));
+route.get('/',checkAuth,checkPermission,errorWrap.wrapper(user.getUsers));
 
-route.get('/export-candidates',checkAuth,checkPermission(1),errorWrap.wrapper(user.exportCandidates));
+route.get('/export-candidates',checkAuth,checkPermission,errorWrap.wrapper(user.exportCandidates));
 
-route.get('/export-recruiter',checkAuth,checkPermission(1),errorWrap.wrapper(user.exportRecruiter));
+route.get('/export-recruiter',checkAuth,checkPermission,errorWrap.wrapper(user.exportRecruiter));
 
-route.get('/export-applicant',checkAuth,checkPermission(1),errorWrap.wrapper(user.exportApplicant));
+route.get('/export-applicant',checkAuth,checkPermission,errorWrap.wrapper(user.exportApplicant));
 
-route.delete('/:id',checkAuth,checkPermission(1),errorWrap.wrapper(user.removeUser));
+route.delete('/:id',checkAuth,checkPermission,errorWrap.wrapper(user.removeUser));
 
 
 

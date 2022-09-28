@@ -6,11 +6,12 @@ const errorWrap = require('../utils/errorWrap');
 const checkAuth = require('../middleware/checkAuth');
 const rolePermission = require('../controller/rolePermission')
 
-route.post('/add/role',errorWrap.wrapper(rolePermission.addRole));
+route.post('/add/role',checkAuth,errorWrap.wrapper(rolePermission.addRole));
 
-route.get('/role',errorWrap.wrapper(rolePermission.getRoles));
+route.get('/role',checkAuth,errorWrap.wrapper(rolePermission.getRoles));
 
-route.delete('/delete/role/:id',errorWrap.wrapper(rolePermission.deleteRole));;
+route.delete('/delete/role/:id',checkAuth,errorWrap.wrapper(rolePermission.deleteRole));
+
 
 
 module.exports = route;

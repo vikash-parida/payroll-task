@@ -7,14 +7,14 @@ module.exports = async (req, res, next) => {
     if (!checkToken) {
       return res.status(401).send({ message: 'Unauthorized' });
     } else {
-        // console.log(req.headers.authorization)
+        //console.log(req.headers.authorization)
       let token = req.headers.authorization.split(' ')[1];
       const checkToken = await models.user_token.findOne({
         where: {
           token
         }
       });
-      // console.log(checkToken);
+      //console.log(checkToken);
       if (!checkToken) {
         return res.status(401).send({ message: 'Unauthorized' });
       }
@@ -22,12 +22,15 @@ module.exports = async (req, res, next) => {
       let userDetails = await models.user.findOne({
         where: { id: decode.id },
       });
-      if (!userDetails) {
-        return res.status(401).send({ message: 'Unauthorized' });
-      } else {
+
+      console.log("..................",userDetails);
+      if (userDetails) {
         delete userDetails.dataValues.password;
         req.userData = userDetails.dataValues;
+       
         next();
+      } else {
+        return res.status(401).send({ message: 'Unauthorized' });
       }
     }
   } catch (err) {

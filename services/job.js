@@ -12,14 +12,14 @@ const redisClient = require('../utils/redis')
 
 exports.createJob = async (req, res) => {
     const { job_name, description } = req.body
-    // console.log(req.userData)
+     console.log("userdata......",req.userData)
 
     if (req.query.type == "raw") {
         if (!req.userData) {
             return { error: true, message: 'Please signin first' }
         }
         const job = await models.sequelize.query(`INSERT INTO "job" ("job_name","description","created_by")
-            VALUES ('${job_name}','${description}','${req.userDetails.id}')`)
+            VALUES ('${job_name}','${description}','${req.userDeta.id}')`)
         return job
 
     }

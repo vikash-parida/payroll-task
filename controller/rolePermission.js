@@ -29,3 +29,29 @@ exports.deleteRole = async (req, res) => {
       res.status(400).json(data)  }
   }
 
+
+
+
+// exports.addPermission = async (req, res, next) => {
+// let {roleId , Permissions} = req.body;
+
+// if(typeof Permissions =="string"){
+//     Permissions=Permissions.split(",");
+// }
+
+// for(let i=0;i<Permissions.length;i++){
+
+// var roledata = await models.rolePermission.create({
+//      role_Id:roleId,
+//      permission_Id:Permissions[i],
+//      isActive:1
+//     })
+//  }
+//    return res.status(201).json({
+//     status: 201,
+//     message: 'permission added succesfully',
+//      data: { roledata },
+//    });
+
+
+//   }
