@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const logger = require('morgan');
-const cookieParser = require('cookie-parser');
+// const cookieParser = require('cookie-parser');
 const path = require('path');
 const routerIndex= require('./routes');
 const swaggerUi = require('swagger-ui-express');
@@ -10,7 +10,7 @@ const swaggerUi = require('swagger-ui-express');
 
 app.use(express.json({ extended: true }));
 app.use(logger('dev'));
-app.use(cookieParser());
+// app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
@@ -35,6 +35,9 @@ app.use((req, res) => {
     });
 });
 
-
+app.use(function (err, req, res, next) {
+    console.error(err);
+    res.status(500).json({ message: err.message });
+});
 
 module.exports = app;

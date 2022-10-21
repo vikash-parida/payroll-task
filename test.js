@@ -16,3 +16,57 @@
 // } else {
 //   console.log('myVar is truthy');
 // }
+
+
+
+// for (var i = 0; i < 5; i++) {
+//   let result = " "
+//     for(var j= 0; j<=i; j++){
+//         result += "* ";
+//     }
+//     console.log(result);
+// }
+
+
+// for (var i = 0; i < 5 ; i++) {
+//     let result = " "
+//       for(var j = i ; j<=4; j+++){
+//           let s = " ";
+//             console.log(s)
+//           for (let l = 0; l <=i ; l++) {
+//             result += "* ";
+//          }
+//       }
+      
+     
+//       console.log(result);
+//   }
+
+// for (var i = 0; i < 5; i++) {
+//   let result = ''
+//     for(var j= 0; j<=i; j++){
+//         result += j+1;
+        
+//     }
+//     console.log(result);
+
+// }
+
+// 
+// console.log(1/0 === 1/-0);
+// var later = new Date(2010, 0, 1, 17, 10, 50, 5.30);
+// console.log(later);
+
+
+// let client = {
+//     pdf:"qwertyuio;qwertyuio;wertyuiop;"
+// }
+
+// let result = client.pdf.split(';')
+// result.pop();
+// console.log(result);
+
+// client.pdf = result;
+
+// console.log(client.pdf);
+
